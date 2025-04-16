@@ -1,7 +1,7 @@
 import { Button, Text, View } from '@/components/Themed'
 import { styles } from '@/styles'
 import { PartnerFormValues } from '@/types'
-import React from 'react'
+
 import { UseFormReturn } from 'react-hook-form'
 import { CurrencyInput } from './CurrencyInput'
 import { FormInput } from './FormInput'

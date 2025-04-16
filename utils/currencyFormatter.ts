@@ -6,11 +6,11 @@
 export function formatCurrency(value: string | number): string {
   // Convert to number and handle empty or invalid input
   const numValue = typeof value === 'string' ? parseFloat(value) : value
-  
+
   if (isNaN(numValue)) {
     return '$0'
   }
-  
+
   // Format as US currency
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -38,11 +38,11 @@ export function parseCurrencyInput(formattedValue: string): string {
 export function formatCurrencyInput(input: string): string {
   // Parse the input to get a clean number
   const numericValue = parseCurrencyInput(input)
-  
+
   if (!numericValue || isNaN(parseFloat(numericValue))) {
     return ''
   }
-  
+
   // Format as currency
   return formatCurrency(numericValue)
 }

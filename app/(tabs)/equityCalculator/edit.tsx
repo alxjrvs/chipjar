@@ -6,7 +6,7 @@ import { PartnerFormValues, partnerFormSchema } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useRouter } from 'expo-router'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import {
   KeyboardAvoidingView,
@@ -31,13 +31,8 @@ export default function EditPartnersScreen() {
     }
   })
 
-  // Load saved partners data on component mount
-  useEffect(() => {
-    loadPartnersData()
-  }, [])
-
   // Function to load partners data from AsyncStorage
-  const loadPartnersData = async () => {
+  const loadPartnersData = useCallback(async () => {
     try {
       setIsLoading(true)
       const savedPartnersData = await AsyncStorage.getItem('partnersData')
@@ -55,7 +50,12 @@ export default function EditPartnersScreen() {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [partnerForm, router])
+
+  // Load saved partners data on component mount
+  useEffect(() => {
+    loadPartnersData()
+  }, [loadPartnersData])
 
   // Function to save updated partners data
   const updatePartnersData = async (data: PartnerFormValues) => {

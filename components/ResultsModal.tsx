@@ -11,7 +11,6 @@ import {
 import { styles } from '@/styles'
 import { PartnerFormValues, SplitResult } from '@/types'
 import { formatCurrency } from '@/utils/currencyFormatter'
-import React from 'react'
 
 interface ResultsModalProps {
   visible: boolean

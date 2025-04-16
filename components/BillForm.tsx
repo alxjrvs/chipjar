@@ -1,9 +1,9 @@
 import { Button, View } from '@/components/Themed'
 import { styles } from '@/styles'
 import { BillFormValues, PartnerFormValues } from '@/types'
-import React from 'react'
+
 import { UseFormReturn } from 'react-hook-form'
-import { BillCurrencyInput } from './BillCurrencyInput'
+import { CurrencyInput } from './CurrencyInput'
 
 interface BillFormProps {
   form: UseFormReturn<BillFormValues>
@@ -14,11 +14,12 @@ interface BillFormProps {
 export function BillForm({ form, partnerData, onSubmit }: BillFormProps) {
   return (
     <View style={styles.formContainer}>
-      <BillCurrencyInput
+      <CurrencyInput
         control={form.control}
         name="amount"
         placeholder="Enter Bill Amount"
         style={styles.billInput}
+        isBillInput={true}
       />
 
       <Button

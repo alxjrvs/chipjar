@@ -1,7 +1,6 @@
 import { Text } from '@/components/Themed'
 import { styles } from '@/styles'
 import { Stack, router } from 'expo-router'
-import React from 'react'
 import { TouchableOpacity } from 'react-native'
 
 export default function IndexLayout() {

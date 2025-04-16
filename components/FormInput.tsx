@@ -1,6 +1,5 @@
 import { Text, TextInput, useAppTheme } from '@/components/Themed'
 import { styles } from '@/styles'
-import React from 'react'
 import { Control, Controller, FieldValues, Path } from 'react-hook-form'
 import { TextInputProps } from 'react-native-paper'
 
@@ -30,11 +29,10 @@ export function FormInput<T extends FieldValues>({
         <>
           <TextInput
             mode="outlined"
-            style={[styles.input, { color: '#000000' }]}
+            style={styles.input}
             placeholder={placeholder}
             keyboardType={keyboardType}
             value={value as string}
-            theme={{ colors: { text: '#000000' } }}
             onChangeText={onChange}
             onBlur={onBlur}
             error={!!error}

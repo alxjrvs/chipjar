@@ -1,6 +1,5 @@
 import { ActivityIndicator, Text, View, useAppTheme } from '@/components/Themed'
 import { styles } from '@/styles'
-import React from 'react'
 
 interface LoadingIndicatorProps {
   message?: string
