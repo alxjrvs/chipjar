@@ -1,7 +1,6 @@
-import { Text, View } from '@/components/Themed'
+import { ActivityIndicator, Text, View, useAppTheme } from '@/components/Themed'
 import { styles } from '@/styles'
 import React from 'react'
-import { ActivityIndicator } from 'react-native'
 
 interface LoadingIndicatorProps {
   message?: string
@@ -10,10 +9,14 @@ interface LoadingIndicatorProps {
 export function LoadingIndicator({
   message = 'Loading...'
 }: LoadingIndicatorProps) {
+  const theme = useAppTheme()
+
   return (
     <View style={styles.loadingContainer}>
-      <ActivityIndicator size="large" color="#2f95dc" />
-      <Text style={styles.loadingText}>{message}</Text>
+      <ActivityIndicator size="large" color={theme.colors.primary} />
+      <Text variant="bodyLarge" style={styles.loadingText}>
+        {message}
+      </Text>
     </View>
   )
 }

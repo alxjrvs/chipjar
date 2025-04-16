@@ -1,9 +1,17 @@
-import { Text, View } from '@/components/Themed'
+import {
+  Button,
+  Card,
+  Modal,
+  Portal,
+  Surface,
+  Text,
+  View,
+  useAppTheme
+} from '@/components/Themed'
 import { styles } from '@/styles'
 import { PartnerFormValues, SplitResult } from '@/types'
 import { formatCurrency } from '@/utils/currencyFormatter'
 import React from 'react'
-import { Modal, TouchableOpacity } from 'react-native'
 
 interface ResultsModalProps {
   visible: boolean
@@ -20,46 +28,55 @@ export function ResultsModal({
   billAmount,
   partnerData
 }: ResultsModalProps) {
+  const theme = useAppTheme()
+
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={visible}
-      onRequestClose={onClose}
-    >
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <Text style={styles.modalTitle}>Bill Split Results</Text>
+    <Portal>
+      <Modal
+        visible={visible}
+        onDismiss={onClose}
+        contentContainerStyle={styles.centeredView}
+      >
+        <Surface style={styles.modalView}>
+          <Text variant="headlineSmall" style={{ marginBottom: 20 }}>
+            Bill Split Results
+          </Text>
 
           {splitResults && (
-            <>
-              <Text style={styles.resultText}>
-                Total Bill: {formatCurrency(billAmount)}
-              </Text>
-              <View style={styles.resultItem}>
-                <Text style={styles.resultName}>
-                  {partnerData.partner1.name}:
-                </Text>
-                <Text style={styles.resultAmount}>
-                  {formatCurrency(splitResults.partner1Amount)}
-                </Text>
-              </View>
-              <View style={styles.resultItem}>
-                <Text style={styles.resultName}>
-                  {partnerData.partner2.name}:
-                </Text>
-                <Text style={styles.resultAmount}>
-                  {formatCurrency(splitResults.partner2Amount)}
-                </Text>
-              </View>
-            </>
+            <Card style={{ width: '100%', marginBottom: 20 }}>
+              <Card.Title title={`Total Bill: ${formatCurrency(billAmount)}`} />
+              <Card.Content>
+                <View style={styles.resultItem}>
+                  <Text variant="titleMedium">
+                    {partnerData.partner1.name}:
+                  </Text>
+                  <Text
+                    variant="titleMedium"
+                    style={{ fontWeight: 'bold', color: theme.colors.primary }}
+                  >
+                    {formatCurrency(splitResults.partner1Amount)}
+                  </Text>
+                </View>
+                <View style={styles.resultItem}>
+                  <Text variant="titleMedium">
+                    {partnerData.partner2.name}:
+                  </Text>
+                  <Text
+                    variant="titleMedium"
+                    style={{ fontWeight: 'bold', color: theme.colors.primary }}
+                  >
+                    {formatCurrency(splitResults.partner2Amount)}
+                  </Text>
+                </View>
+              </Card.Content>
+            </Card>
           )}
 
-          <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Text style={styles.buttonText}>Close</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </Modal>
+          <Button mode="contained" onPress={onClose}>
+            Close
+          </Button>
+        </Surface>
+      </Modal>
+    </Portal>
   )
 }

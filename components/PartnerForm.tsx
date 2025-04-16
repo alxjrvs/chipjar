@@ -1,9 +1,8 @@
-import { Text, View } from '@/components/Themed'
+import { Button, Text, View } from '@/components/Themed'
 import { styles } from '@/styles'
 import { PartnerFormValues } from '@/types'
 import React from 'react'
 import { UseFormReturn } from 'react-hook-form'
-import { TouchableOpacity } from 'react-native'
 import { CurrencyInput } from './CurrencyInput'
 import { FormInput } from './FormInput'
 
@@ -22,7 +21,9 @@ export function PartnerForm({
     <View style={styles.formContainer}>
       <View style={styles.partnersRow}>
         <View style={styles.partnerSection}>
-          <Text style={styles.partnerTitle}>Partner 1</Text>
+          <Text variant="titleMedium" style={styles.partnerTitle}>
+            Partner 1
+          </Text>
           <FormInput
             control={form.control}
             name="partner1.name"
@@ -36,7 +37,9 @@ export function PartnerForm({
         </View>
 
         <View style={styles.partnerSection}>
-          <Text style={styles.partnerTitle}>Partner 2</Text>
+          <Text variant="titleMedium" style={styles.partnerTitle}>
+            Partner 2
+          </Text>
           <FormInput
             control={form.control}
             name="partner2.name"
@@ -50,12 +53,13 @@ export function PartnerForm({
         </View>
       </View>
 
-      <TouchableOpacity
+      <Button
+        mode="contained"
         style={styles.button}
         onPress={form.handleSubmit(onSubmit)}
       >
-        <Text style={styles.buttonText}>{submitButtonText}</Text>
-      </TouchableOpacity>
+        {submitButtonText}
+      </Button>
     </View>
   )
 }

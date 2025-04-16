@@ -1,48 +1,57 @@
 /**
- * Learn more about Light and Dark modes:
- * https://docs.expo.io/guides/color-schemes/
+ * Themed components using React Native Paper
  */
 
-import { Text as DefaultText, View as DefaultView } from 'react-native'
+import { CustomDarkTheme, CustomLightTheme } from '@/constants/Theme'
+import { useColorScheme } from 'react-native'
+import {
+  MD3Theme,
+  ActivityIndicator as PaperActivityIndicator,
+  Appbar as PaperAppbar,
+  Button as PaperButton,
+  Card as PaperCard,
+  IconButton as PaperIconButton,
+  Modal as PaperModal,
+  Portal as PaperPortal,
+  Provider as PaperProvider,
+  Surface as PaperSurface,
+  Text as PaperText,
+  TextInput as PaperTextInput,
+  useTheme
+} from 'react-native-paper'
 
-import Colors from '@/constants/Colors'
-import { useColorScheme } from './useColorScheme'
-
-type ThemeProps = {
-  lightColor?: string
-  darkColor?: string
+// Export the theme hook for use in components
+export function useAppTheme() {
+  return useTheme<MD3Theme>()
 }
 
-export type TextProps = ThemeProps & DefaultText['props']
-export type ViewProps = ThemeProps & DefaultView['props']
+// Export the Paper Provider with our custom theme
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const colorScheme = useColorScheme()
+  const theme = colorScheme === 'dark' ? CustomDarkTheme : CustomLightTheme
 
-export function useThemeColor(
-  props: { light?: string; dark?: string },
-  colorName: keyof typeof Colors.light & keyof typeof Colors.dark
-) {
-  const theme = useColorScheme() ?? 'light'
-  const colorFromProps = props[theme]
-
-  if (colorFromProps) {
-    return colorFromProps
-  } else {
-    return Colors[theme][colorName]
-  }
+  return <PaperProvider theme={theme}>{children}</PaperProvider>
 }
 
-export function Text(props: TextProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text')
+// Re-export Paper components with our theme
+export const Text = PaperText
+export const Surface = PaperSurface
+export const Button = PaperButton
+export const TextInput = PaperTextInput
+export const Card = PaperCard
+export const Appbar = PaperAppbar
+export const IconButton = PaperIconButton
+export const Modal = PaperModal
+export const Portal = PaperPortal
+export const ActivityIndicator = PaperActivityIndicator
 
-  return <DefaultText style={[{ color }, style]} {...otherProps} />
-}
-
-export function View(props: ViewProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props
-  const backgroundColor = useThemeColor(
-    { light: lightColor, dark: darkColor },
-    'background'
+// For backward compatibility, create a View component that uses Surface
+export function View(props: React.ComponentProps<typeof PaperSurface>) {
+  const { style, ...otherProps } = props
+  return (
+    <PaperSurface
+      style={[{ backgroundColor: 'transparent' }, style]}
+      {...otherProps}
+    />
   )
-
-  return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />
 }

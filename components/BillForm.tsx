@@ -1,10 +1,9 @@
-import { Text, View } from '@/components/Themed'
+import { Button, View } from '@/components/Themed'
 import { styles } from '@/styles'
 import { BillFormValues, PartnerFormValues } from '@/types'
 import React from 'react'
 import { UseFormReturn } from 'react-hook-form'
-import { TouchableOpacity } from 'react-native'
-import { CurrencyInput } from './CurrencyInput'
+import { BillCurrencyInput } from './BillCurrencyInput'
 
 interface BillFormProps {
   form: UseFormReturn<BillFormValues>
@@ -15,19 +14,21 @@ interface BillFormProps {
 export function BillForm({ form, partnerData, onSubmit }: BillFormProps) {
   return (
     <View style={styles.formContainer}>
-      <CurrencyInput
+      <BillCurrencyInput
         control={form.control}
         name="amount"
         placeholder="Enter Bill Amount"
         style={styles.billInput}
       />
 
-      <TouchableOpacity
+      <Button
+        mode="contained"
         style={styles.equifyButton}
         onPress={form.handleSubmit(onSubmit)}
+        icon="calculator"
       >
-        <Text style={styles.buttonText}>EQUIFY</Text>
-      </TouchableOpacity>
+        EQUIFY
+      </Button>
     </View>
   )
 }

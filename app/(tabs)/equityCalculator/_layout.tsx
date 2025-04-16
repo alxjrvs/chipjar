@@ -15,7 +15,7 @@ export default function IndexLayout() {
         }}
       />
       <Stack.Screen
-        name="calculator"
+        name="singleBill"
         options={{
           title: 'Equity Calculator',
           presentation: 'card',
