@@ -31,9 +31,30 @@ export function parseCurrencyInput(formattedValue: string): string {
 }
 
 /**
+ * Formats a number with commas but no currency symbol
+ * @param value - The number to format
+ * @returns Formatted string with commas (e.g., "1,234.56")
+ */
+export function formatNumberWithCommas(value: string | number): string {
+  // Convert to number and handle empty or invalid input
+  const numValue = typeof value === 'string' ? parseFloat(value) : value
+
+  if (isNaN(numValue)) {
+    return '0'
+  }
+
+  // Format with commas but no currency symbol
+  return new Intl.NumberFormat('en-US', {
+    style: 'decimal',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  }).format(numValue)
+}
+
+/**
  * Formats user input as currency while typing
  * @param input - Raw user input
- * @returns Formatted currency string
+ * @returns Formatted currency string without $ symbol
  */
 export function formatCurrencyInput(input: string): string {
   // Parse the input to get a clean number
@@ -43,6 +64,6 @@ export function formatCurrencyInput(input: string): string {
     return ''
   }
 
-  // Format as currency
-  return formatCurrency(numericValue)
+  // Format with commas but no currency symbol
+  return formatNumberWithCommas(numericValue)
 }

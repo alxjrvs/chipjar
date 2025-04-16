@@ -4,8 +4,7 @@ import { MD3DarkTheme, MD3LightTheme } from 'react-native-paper'
 export const CustomLightTheme = {
   ...MD3LightTheme,
   colors: {
-    ...MD3LightTheme.colors,
-    onSurface: '#000000' // This affects input text color
+    ...MD3LightTheme.colors
   }
 }
 
@@ -13,7 +12,6 @@ export const CustomLightTheme = {
 export const CustomDarkTheme = {
   ...MD3DarkTheme,
   colors: {
-    ...MD3DarkTheme.colors,
-    onSurface: '#000000' // This affects input text color
+    ...MD3DarkTheme.colors
   }
 }
