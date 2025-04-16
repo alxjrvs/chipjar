@@ -37,7 +37,12 @@ export default function IndexLayout() {
           title: 'Equity Calculator',
           presentation: 'card',
           headerTitle: () => (
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center'
+              }}
+            >
               <AcornDecoration size={20} style={{ marginRight: 8 }} />
               <Text
                 style={{

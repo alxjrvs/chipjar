@@ -63,6 +63,7 @@ export function View(props: React.ComponentProps<typeof PaperSurface>) {
   return (
     <PaperSurface
       style={[{ backgroundColor: 'transparent' }, style]}
+      elevation={0}
       {...otherProps}
     />
   )

@@ -25,6 +25,8 @@ export function BillForm({ form, onSubmit }: BillFormProps) {
       <Button
         mode="contained"
         style={styles.equifyButton}
+        contentStyle={styles.equifyButton}
+        labelStyle={styles.equifyButtonText}
         onPress={form.handleSubmit(onSubmit)}
         icon="calculator"
       >

@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
     marginVertical: 7
   },
   codeHighlightContainer: {
-    borderRadius: 3,
     paddingHorizontal: 4
   },
   getStartedText: {

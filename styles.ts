@@ -135,12 +135,13 @@ export const styles = StyleSheet.create({
     fontFamily: 'Bitter'
   },
   equifyButton: {
-    padding: 18,
-    alignItems: 'center',
-    marginTop: 5,
-    width: '100%',
-    maxWidth: 400,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    width: '100%'
+  },
+  equifyButtonText: {
+    fontSize: 18,
+    fontFamily: 'Bitter-Bold',
+    paddingVertical: 20
   },
   resetButton: {
     marginTop: 20,
