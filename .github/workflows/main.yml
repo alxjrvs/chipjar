@@ -17,4 +17,5 @@ jobs:
         with:
           bun-version: latest
       - run: bun install
-      - run: bun moon :ci -u
+      - run: bun lint
+      - run: bun format
