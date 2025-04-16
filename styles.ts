@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   loadingText: {
     marginTop: 15,
     fontSize: 16,
-    color: '#2f95dc'
+    fontFamily: 'Bitter'
   },
   container: {
     flex: 1
@@ -23,12 +23,24 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: 'bold',
+    marginBottom: 5,
+    fontFamily: 'Bitter-Bold'
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 5
+  },
+  acornDecoration: {
+    marginHorizontal: 10
   },
   subtitle: {
     fontSize: 16,
     marginBottom: 30,
-    opacity: 0.7
+    opacity: 0.8,
+    fontFamily: 'Bitter',
+    color: '#D35400' // Keeping this specific color (Burnt orange autumn leaf)
   },
   headerContainer: {
     flexDirection: 'row',
@@ -38,9 +50,7 @@ export const styles = StyleSheet.create({
     marginBottom: 20
   },
   editButton: {
-    backgroundColor: '#2f95dc',
     padding: 10,
-    borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -49,10 +59,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14
   },
-  formContainer: {
-    width: '100%',
-    maxWidth: 800
-  },
+  formContainer: {},
   partnersRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -62,37 +69,31 @@ export const styles = StyleSheet.create({
   partnerSection: {
     marginBottom: 20,
     padding: 15,
-    borderRadius: 10,
-    backgroundColor: 'rgba(200, 200, 200, 0.1)',
     width: '48%',
     minWidth: 280
   },
   partnerTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 10
+    marginBottom: 10,
+    fontFamily: 'Bitter-Bold'
   },
   input: {
     height: 50,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
     marginBottom: 5,
     paddingHorizontal: 10,
-    backgroundColor: 'white'
+    fontFamily: 'Bitter'
   },
   inputError: {
-    borderColor: '#ff6347'
+    // borderColor will come from theme.colors.error
   },
   errorText: {
-    color: '#ff6347',
     fontSize: 12,
-    marginBottom: 10
+    marginBottom: 10,
+    fontFamily: 'Bitter'
   },
   button: {
-    backgroundColor: '#2f95dc',
     padding: 18,
-    borderRadius: 8,
     alignItems: 'center',
     marginTop: 20,
     width: '100%',
@@ -100,15 +101,13 @@ export const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   buttonText: {
-    color: 'white',
     fontWeight: 'bold',
-    fontSize: 18
+    fontSize: 18,
+    fontFamily: 'Bitter-Bold'
   },
   partnersInfo: {
     marginBottom: 20,
     padding: 15,
-    borderRadius: 10,
-    backgroundColor: 'rgba(200, 200, 200, 0.1)',
     flexDirection: 'row',
     justifyContent: 'space-between',
     flexWrap: 'wrap'
@@ -116,33 +115,27 @@ export const styles = StyleSheet.create({
   partnerInfoItem: {
     width: '48%',
     minWidth: 280,
-    padding: 10,
-    borderRadius: 8,
-    backgroundColor: 'rgba(200, 200, 200, 0.05)'
+    padding: 10
   },
   partnersInfoText: {
     fontSize: 16,
-    marginBottom: 5
+    marginBottom: 5,
+    fontFamily: 'Bitter'
   },
   billInput: {
     height: 70,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
     marginBottom: 15,
     marginTop: 10,
     paddingHorizontal: 15,
     fontSize: 22,
-    backgroundColor: 'white',
     textAlign: 'center',
     width: '100%',
     maxWidth: 400,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontFamily: 'Bitter'
   },
   equifyButton: {
-    backgroundColor: '#2f95dc',
     padding: 18,
-    borderRadius: 8,
     alignItems: 'center',
     marginTop: 5,
     width: '100%',
@@ -155,8 +148,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   resetButtonText: {
-    color: '#ff6347',
-    fontSize: 14
+    fontSize: 14,
+    fontFamily: 'Bitter'
   },
   cancelButton: {
     marginTop: 15,
@@ -167,40 +160,32 @@ export const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   cancelButtonText: {
-    color: '#888',
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: 'Bitter'
   },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    backgroundColor: 'rgba(56, 47, 36, 0.5)' // Keeping this specific color
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 10,
     padding: 25,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
     width: '80%',
     maxWidth: 400
   },
   modalTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    marginBottom: 20
+    marginBottom: 20,
+    fontFamily: 'Bitter-Bold'
   },
   resultText: {
     fontSize: 18,
-    marginBottom: 15
+    marginBottom: 15,
+    fontFamily: 'Bitter'
   },
   resultItem: {
     flexDirection: 'row',
@@ -210,16 +195,16 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   resultName: {
-    fontSize: 18
+    fontSize: 18,
+    fontFamily: 'Bitter'
   },
   resultAmount: {
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily: 'Bitter-Bold'
   },
   closeButton: {
-    backgroundColor: '#2f95dc',
     padding: 12,
-    borderRadius: 5,
     alignItems: 'center',
     marginTop: 20,
     width: 120

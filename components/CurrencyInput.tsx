@@ -60,7 +60,7 @@ function CurrencyInputField({
   return (
     <>
       <TextInput
-        mode="outlined"
+        mode="flat"
         style={[
           isBillInput ? styles.billInput : styles.input,
           rest.style,
@@ -120,8 +120,7 @@ function CurrencyInputField({
           }
         }}
         error={!!error}
-        outlineColor={theme.colors.primary}
-        activeOutlineColor={theme.colors.primary}
+        underlineColor="transparent"
         left={<TextInput.Affix text="$" />}
         {...rest}
       />

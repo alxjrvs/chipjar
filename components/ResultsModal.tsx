@@ -1,6 +1,5 @@
 import {
   Button,
-  Card,
   Modal,
   Portal,
   Surface,
@@ -42,33 +41,102 @@ export function ResultsModal({
           </Text>
 
           {splitResults && (
-            <Card style={{ width: '100%', marginBottom: 20 }}>
-              <Card.Title title={`Total Bill: ${formatCurrency(billAmount)}`} />
-              <Card.Content>
-                <View style={styles.resultItem}>
-                  <Text variant="titleMedium">
-                    {partnerData.partner1.name}:
-                  </Text>
+            <View style={{ width: '100%', marginBottom: 20 }}>
+              {/* Side by side results with big amounts */}
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                  marginBottom: 30
+                }}
+              >
+                {/* Partner 1 */}
+                <View
+                  style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    padding: 10,
+                    backgroundColor: theme.colors.surfaceVariant,
+                    marginRight: 10
+                  }}
+                >
                   <Text
-                    variant="titleMedium"
-                    style={{ fontWeight: 'bold', color: theme.colors.primary }}
+                    variant="displayMedium"
+                    style={{
+                      fontWeight: 'bold',
+                      color: theme.colors.primary,
+                      marginBottom: 5,
+                      textAlign: 'center',
+                      fontSize: 32
+                    }}
                   >
                     {formatCurrency(splitResults.partner1Amount)}
                   </Text>
-                </View>
-                <View style={styles.resultItem}>
-                  <Text variant="titleMedium">
-                    {partnerData.partner2.name}:
-                  </Text>
                   <Text
-                    variant="titleMedium"
-                    style={{ fontWeight: 'bold', color: theme.colors.primary }}
+                    variant="labelSmall"
+                    style={{
+                      color: theme.colors.onSurfaceVariant,
+                      textAlign: 'center'
+                    }}
+                  >
+                    {partnerData.partner1.name}
+                  </Text>
+                </View>
+
+                {/* Partner 2 */}
+                <View
+                  style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    padding: 10,
+                    backgroundColor: theme.colors.surfaceVariant,
+                    marginLeft: 10
+                  }}
+                >
+                  <Text
+                    variant="displayMedium"
+                    style={{
+                      fontWeight: 'bold',
+                      color: theme.colors.primary,
+                      marginBottom: 5,
+                      textAlign: 'center',
+                      fontSize: 32
+                    }}
                   >
                     {formatCurrency(splitResults.partner2Amount)}
                   </Text>
+                  <Text
+                    variant="labelSmall"
+                    style={{
+                      color: theme.colors.onSurfaceVariant,
+                      textAlign: 'center'
+                    }}
+                  >
+                    {partnerData.partner2.name}
+                  </Text>
                 </View>
-              </Card.Content>
-            </Card>
+              </View>
+
+              {/* Bill total at the bottom */}
+              <View
+                style={{
+                  width: '100%',
+                  alignItems: 'center',
+                  padding: 10
+                }}
+              >
+                <Text
+                  variant="headlineSmall"
+                  style={{
+                    fontWeight: 'bold',
+                    color: theme.colors.secondary
+                  }}
+                >
+                  {formatCurrency(billAmount)}
+                </Text>
+              </View>
+            </View>
           )}
 
           <Button mode="contained" onPress={onClose}>

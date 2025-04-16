@@ -11,7 +11,7 @@ interface BillFormProps {
   onSubmit: (data: BillFormValues) => void
 }
 
-export function BillForm({ form, partnerData, onSubmit }: BillFormProps) {
+export function BillForm({ form, onSubmit }: BillFormProps) {
   return (
     <View style={styles.formContainer}>
       <CurrencyInput

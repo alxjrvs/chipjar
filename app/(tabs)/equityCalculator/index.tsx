@@ -1,6 +1,7 @@
+import { AcornDecoration } from '@/components/AcornDecoration'
 import { LoadingIndicator } from '@/components/LoadingIndicator'
 import { PartnerForm } from '@/components/PartnerForm'
-import { Text } from '@/components/Themed'
+import { Text, View } from '@/components/Themed'
 import { zodResolver } from '@hookform/resolvers/zod'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useRouter } from 'expo-router'
@@ -74,7 +75,11 @@ export default function PartnersScreen() {
         contentContainerStyle={styles.scrollContainer}
         keyboardShouldPersistTaps="handled"
       >
-        <Text style={styles.title}>ChipJar</Text>
+        <View style={styles.titleContainer}>
+          <AcornDecoration size={32} style={styles.acornDecoration} />
+          <Text style={styles.title}>ChipJar</Text>
+          <AcornDecoration size={32} style={styles.acornDecoration} />
+        </View>
         <Text style={styles.subtitle}>Split bills based on income</Text>
 
         <PartnerForm form={partnerForm} onSubmit={savePartnersData} />

@@ -28,7 +28,7 @@ export function FormInput<T extends FieldValues>({
       }) => (
         <>
           <TextInput
-            mode="outlined"
+            mode="flat"
             style={styles.input}
             placeholder={placeholder}
             keyboardType={keyboardType}
@@ -36,8 +36,7 @@ export function FormInput<T extends FieldValues>({
             onChangeText={onChange}
             onBlur={onBlur}
             error={!!error}
-            outlineColor={theme.colors.primary}
-            activeOutlineColor={theme.colors.primary}
+            underlineColor="transparent"
             {...rest}
           />
           {error && (

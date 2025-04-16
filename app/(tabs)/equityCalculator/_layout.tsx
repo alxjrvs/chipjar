@@ -1,11 +1,29 @@
-import { Text } from '@/components/Themed'
-import { styles } from '@/styles'
-import { Stack, router } from 'expo-router'
-import { TouchableOpacity } from 'react-native'
+import { AcornDecoration } from '@/components/AcornDecoration'
+import { Button, Text, useAppTheme, View } from '@/components/Themed'
+import { router, Stack } from 'expo-router'
 
 export default function IndexLayout() {
+  const theme = useAppTheme()
+
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#5D3915' // Darker acorn brown
+        },
+        headerTintColor: theme.colors.onPrimary,
+        headerTitleStyle: {
+          fontFamily: 'Bitter-Bold',
+          color: 'red'
+        },
+        headerBackTitleStyle: {
+          fontFamily: 'Bitter'
+        },
+        contentStyle: {
+          backgroundColor: theme.colors.background
+        }
+      }}
+    >
       <Stack.Screen
         name="index"
         options={{
@@ -18,14 +36,30 @@ export default function IndexLayout() {
         options={{
           title: 'Equity Calculator',
           presentation: 'card',
+          headerTitle: () => (
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <AcornDecoration size={20} style={{ marginRight: 8 }} />
+              <Text
+                style={{
+                  fontFamily: 'Bitter-Bold',
+                  fontSize: 18
+                }}
+              >
+                Equity Calculator
+              </Text>
+            </View>
+          ),
           headerRight: () => {
             return (
-              <TouchableOpacity
-                style={styles.editButton}
+              <Button
+                mode="contained"
+                compact
+                icon="pencil"
                 onPress={() => router.push('/equityCalculator/edit')}
+                style={{ marginRight: 5 }}
               >
-                <Text style={styles.editButtonText}>Edit Partners</Text>
-              </TouchableOpacity>
+                Edit Partners
+              </Button>
             )
           }
         }}
@@ -34,7 +68,20 @@ export default function IndexLayout() {
         name="edit"
         options={{
           title: 'Edit Partners',
-          presentation: 'card'
+          presentation: 'card',
+          headerTitle: () => (
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <AcornDecoration size={20} style={{ marginRight: 8 }} />
+              <Text
+                style={{
+                  fontFamily: 'Bitter-Bold',
+                  fontSize: 18
+                }}
+              >
+                Edit Partners
+              </Text>
+            </View>
+          )
         }}
       />
     </Stack>

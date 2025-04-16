@@ -36,7 +36,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 // Re-export Paper components with our theme
 export const Text = PaperText
 export const Surface = PaperSurface
-export const Button = PaperButton
+// Custom Button with no borders or elevation
+export function Button(props: React.ComponentProps<typeof PaperButton>) {
+  return (
+    <PaperButton
+      buttonColor="#5D3915" // Darker acorn brown
+      textColor="white"
+      mode={props.mode || 'text'}
+      {...props}
+      style={[{ elevation: 0, borderWidth: 0 }, props.style]}
+    />
+  )
+}
+// Custom TextInput with no borders
 export const TextInput = PaperTextInput
 export const Card = PaperCard
 export const Appbar = PaperAppbar
