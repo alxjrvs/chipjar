@@ -6,6 +6,7 @@ import { usePartnerData } from '@/contexts/PartnerDataContext'
 import { styles } from '@/styles'
 import { BillFormValues, SplitResult, billFormSchema } from '@/types'
 import { calculateBillSplit } from '@/utils/billSplitCalculator'
+import { parseCurrencyInput } from '@/utils/currencyFormatter'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Redirect } from 'expo-router'
 import { useState } from 'react'
@@ -28,7 +29,10 @@ export default function CalculatorScreen() {
   const handleCalculateSplit = (data: BillFormValues) => {
     if (!partners) return
 
-    const results = calculateBillSplit(data.amount, partners)
+    const results = calculateBillSplit(
+      Number(parseCurrencyInput(data.amount)),
+      partners
+    )
     setSplitResults(results)
     setModalVisible(true)
   }

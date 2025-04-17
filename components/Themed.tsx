@@ -1,7 +1,3 @@
-/**
- * Themed components using React Native Paper
- */
-
 import { CustomDarkTheme, CustomLightTheme } from '@/constants/Theme'
 import { useColorScheme } from 'react-native'
 import {
@@ -20,12 +16,10 @@ import {
   useTheme
 } from 'react-native-paper'
 
-// Export the theme hook for use in components
 export function useAppTheme() {
   return useTheme<MD3Theme>()
 }
 
-// Export the Paper Provider with our custom theme
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const colorScheme = useColorScheme()
   const theme = colorScheme === 'dark' ? CustomDarkTheme : CustomLightTheme
@@ -33,10 +27,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return <PaperProvider theme={theme}>{children}</PaperProvider>
 }
 
-// Re-export Paper components with our theme
 export const Text = PaperText
 export const Surface = PaperSurface
-// Custom Button with no borders or elevation
 export function Button(props: React.ComponentProps<typeof PaperButton>) {
   const theme = useTheme<MD3Theme>()
   return (
@@ -49,7 +41,6 @@ export function Button(props: React.ComponentProps<typeof PaperButton>) {
     />
   )
 }
-// Custom TextInput with no borders
 export const TextInput = PaperTextInput
 export const Card = PaperCard
 export const Appbar = PaperAppbar
@@ -58,7 +49,6 @@ export const Modal = PaperModal
 export const Portal = PaperPortal
 export const ActivityIndicator = PaperActivityIndicator
 
-// For backward compatibility, create a View component that uses Surface
 export function View(props: React.ComponentProps<typeof PaperSurface>) {
   const { style, ...otherProps } = props
   return (

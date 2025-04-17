@@ -69,6 +69,32 @@ export default function TabLayout() {
           )
         }}
       />
+      <Tabs.Screen
+        name="partnerStats"
+        options={{
+          title: 'Stats',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome
+              name="pie-chart"
+              size={size}
+              color={!!partners ? color : theme.colors.surfaceDisabled}
+            />
+          )
+        }}
+      />
+      <Tabs.Screen
+        name="regularBills"
+        options={{
+          title: 'Bills',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome
+              name="file-text-o"
+              size={size}
+              color={!!partners ? color : theme.colors.surfaceDisabled}
+            />
+          )
+        }}
+      />
     </Tabs>
   )
 }

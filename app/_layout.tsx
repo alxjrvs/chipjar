@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import 'react-native-reanimated'
 
 import { ThemeProvider } from '@/components/Themed'
+import { BillsProvider } from '@/contexts/BillsContext'
 import { PartnerDataProvider } from '@/contexts/PartnerDataContext'
 
 export { ErrorBoundary } from 'expo-router'
@@ -51,24 +52,26 @@ function RootLayoutNav() {
   return (
     <ThemeProvider>
       <PartnerDataProvider>
-        <StatusBar style="auto" />
-        <Stack
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: '#5D4037'
-            },
-            headerTintColor: '#FFFFFF',
-            headerTitleStyle: {
-              fontFamily: 'Bitter-Bold'
-            },
-            contentStyle: {
-              backgroundColor: '#FFFBF5'
-            }
-          }}
-        >
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-        </Stack>
+        <BillsProvider>
+          <StatusBar style="auto" />
+          <Stack
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: '#5D4037'
+              },
+              headerTintColor: '#FFFFFF',
+              headerTitleStyle: {
+                fontFamily: 'Bitter-Bold'
+              },
+              contentStyle: {
+                backgroundColor: '#FFFBF5'
+              }
+            }}
+          >
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+          </Stack>
+        </BillsProvider>
       </PartnerDataProvider>
     </ThemeProvider>
   )
