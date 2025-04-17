@@ -15,9 +15,7 @@ export default function RegularBillsLayout() {
         headerTitleStyle: {
           fontFamily: 'Bitter-Bold'
         },
-        headerBackTitleStyle: {
-          fontFamily: 'Bitter'
-        },
+        headerBackVisible: false,
         contentStyle: {
           backgroundColor: theme.colors.background
         }

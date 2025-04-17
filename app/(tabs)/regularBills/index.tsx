@@ -12,7 +12,14 @@ import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
 import { Card, Divider, FAB, IconButton, Menu } from 'react-native-paper'
 
 export default function RegularBillsScreen() {
-  const { bills, isLoading, addBill, updateBill, deleteBill, calculatePartnerAmounts } = useBills()
+  const {
+    bills,
+    isLoading,
+    addBill,
+    updateBill,
+    deleteBill,
+    calculatePartnerAmounts
+  } = useBills()
   const { partners, isLoading: partnersLoading } = usePartnerData()
   const theme = useAppTheme()
 
@@ -44,7 +51,12 @@ export default function RegularBillsScreen() {
     setMenuVisible(null)
   }
 
-  const handleSubmit = async (data: { name: string; description: string; recurrence: RecurrenceType; amount: number }) => {
+  const handleSubmit = async (data: {
+    name: string
+    description: string
+    recurrence: RecurrenceType
+    amount: number
+  }) => {
     if (selectedBill) {
       await updateBill({ ...data, id: selectedBill.id })
     } else {
@@ -78,11 +90,21 @@ export default function RegularBillsScreen() {
     return (
       <Card key={bill.id} style={{ marginBottom: 15, overflow: 'hidden' }}>
         <Card.Content>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}
+          >
             <View style={{ flex: 1 }}>
-              <Text style={{ fontFamily: 'Bitter-Bold', fontSize: 18 }}>{bill.name}</Text>
+              <Text style={{ fontFamily: 'Bitter-Bold', fontSize: 18 }}>
+                {bill.name}
+              </Text>
               {bill.description ? (
-                <Text style={{ fontFamily: 'Bitter', fontSize: 14, marginTop: 2 }}>
+                <Text
+                  style={{ fontFamily: 'Bitter', fontSize: 14, marginTop: 2 }}
+                >
                   {bill.description}
                 </Text>
               ) : null}
@@ -111,11 +133,24 @@ export default function RegularBillsScreen() {
             </Menu>
           </View>
 
-          <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center' }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              marginTop: 10,
+              alignItems: 'center'
+            }}
+          >
             <Text style={{ fontFamily: 'Bitter-Bold', fontSize: 20 }}>
               {formatCurrency(bill.amount)}
             </Text>
-            <Text style={{ marginLeft: 8, fontFamily: 'Bitter', fontSize: 14, color: theme.colors.outline }}>
+            <Text
+              style={{
+                marginLeft: 8,
+                fontFamily: 'Bitter',
+                fontSize: 14,
+                color: theme.colors.outline
+              }}
+            >
               {getRecurrenceLabel(bill.recurrence)}
             </Text>
           </View>
@@ -123,12 +158,22 @@ export default function RegularBillsScreen() {
           {partnerAmounts && (
             <>
               <Divider style={{ marginVertical: 10 }} />
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between'
+                }}
+              >
                 <View style={{ alignItems: 'flex-start' }}>
                   <Text style={{ fontFamily: 'Bitter', fontSize: 14 }}>
                     {partners.partner1.name}
                   </Text>
-                  <Text style={{ fontFamily: 'Bitter-Bold', color: theme.colors.primary }}>
+                  <Text
+                    style={{
+                      fontFamily: 'Bitter-Bold',
+                      color: theme.colors.primary
+                    }}
+                  >
                     {formatCurrency(partnerAmounts.partner1Amount)}
                   </Text>
                 </View>
@@ -136,7 +181,12 @@ export default function RegularBillsScreen() {
                   <Text style={{ fontFamily: 'Bitter', fontSize: 14 }}>
                     {partners.partner2.name}
                   </Text>
-                  <Text style={{ fontFamily: 'Bitter-Bold', color: theme.colors.secondary }}>
+                  <Text
+                    style={{
+                      fontFamily: 'Bitter-Bold',
+                      color: theme.colors.secondary
+                    }}
+                  >
                     {formatCurrency(partnerAmounts.partner2Amount)}
                   </Text>
                 </View>
@@ -178,7 +228,14 @@ export default function RegularBillsScreen() {
               <Text style={{ textAlign: 'center', fontFamily: 'Bitter' }}>
                 No regular bills added yet.
               </Text>
-              <Text style={{ textAlign: 'center', fontFamily: 'Bitter', color: theme.colors.outline, marginBottom: 20 }}>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontFamily: 'Bitter',
+                  color: theme.colors.outline,
+                  marginBottom: 20
+                }}
+              >
                 Add your first bill to get started.
               </Text>
               <Button mode="contained" onPress={handleAddBill}>
@@ -187,21 +244,23 @@ export default function RegularBillsScreen() {
             </Card.Content>
           </Card>
         ) : (
-          <View style={{ width: '100%' }}>
-            {bills.map(renderBillCard)}
-          </View>
+          <View style={{ width: '100%' }}>{bills.map(renderBillCard)}</View>
         )}
 
         <RegularBillForm
           visible={formVisible}
           onClose={() => setFormVisible(false)}
           onSubmit={handleSubmit}
-          initialValues={selectedBill ? {
-            name: selectedBill.name,
-            description: selectedBill.description,
-            recurrence: selectedBill.recurrence,
-            amount: selectedBill.amount
-          } : undefined}
+          initialValues={
+            selectedBill
+              ? {
+                  name: selectedBill.name,
+                  description: selectedBill.description,
+                  recurrence: selectedBill.recurrence,
+                  amount: selectedBill.amount
+                }
+              : undefined
+          }
         />
       </ScrollView>
 

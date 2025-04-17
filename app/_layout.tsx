@@ -63,6 +63,7 @@ function RootLayoutNav() {
               headerTitleStyle: {
                 fontFamily: 'Bitter-Bold'
               },
+              headerBackVisible: false,
               contentStyle: {
                 backgroundColor: '#FFFBF5'
               }

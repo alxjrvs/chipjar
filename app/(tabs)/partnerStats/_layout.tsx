@@ -15,9 +15,7 @@ export default function PartnerStatsLayout() {
         headerTitleStyle: {
           fontFamily: 'Bitter-Bold'
         },
-        headerBackTitleStyle: {
-          fontFamily: 'Bitter'
-        },
+        headerBackVisible: false,
         contentStyle: {
           backgroundColor: theme.colors.background
         }

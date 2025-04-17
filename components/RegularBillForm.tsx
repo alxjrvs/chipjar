@@ -19,11 +19,21 @@ type BillFormValues = z.infer<typeof billSchema>
 interface BillFormProps {
   visible: boolean
   onClose: () => void
-  onSubmit: (data: { name: string; description: string; recurrence: RecurrenceType; amount: number }) => void
+  onSubmit: (data: {
+    name: string
+    description: string
+    recurrence: RecurrenceType
+    amount: number
+  }) => void
   initialValues?: Omit<Bill, 'id'>
 }
 
-export function RegularBillForm({ visible, onClose, onSubmit, initialValues }: BillFormProps) {
+export function RegularBillForm({
+  visible,
+  onClose,
+  onSubmit,
+  initialValues
+}: BillFormProps) {
   const theme = useAppTheme()
 
   const defaultValues: BillFormValues = {
@@ -33,7 +43,12 @@ export function RegularBillForm({ visible, onClose, onSubmit, initialValues }: B
     amount: initialValues?.amount ? initialValues.amount.toString() : ''
   }
 
-  const { control, handleSubmit, formState: { errors }, reset } = useForm<BillFormValues>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm<BillFormValues>({
     resolver: zodResolver(billSchema),
     defaultValues
   })
@@ -148,21 +163,41 @@ export function RegularBillForm({ visible, onClose, onSubmit, initialValues }: B
               )}
             />
 
-            <Text style={{ fontFamily: 'Bitter-Bold', marginBottom: 10 }}>Recurrence</Text>
+            <Text style={{ fontFamily: 'Bitter-Bold', marginBottom: 10 }}>
+              Recurrence
+            </Text>
             <Controller
               control={control}
               name="recurrence"
               render={({ field: { onChange, value } }) => (
                 <RadioButton.Group onValueChange={onChange} value={value}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginBottom: 8
+                    }}
+                  >
                     <RadioButton value="monthly" color={theme.colors.primary} />
                     <Text>Monthly</Text>
                   </View>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginBottom: 8
+                    }}
+                  >
                     <RadioButton value="annual" color={theme.colors.primary} />
                     <Text>Annual</Text>
                   </View>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 15 }}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      marginBottom: 15
+                    }}
+                  >
                     <RadioButton value="other" color={theme.colors.primary} />
                     <Text>Other</Text>
                   </View>
@@ -170,7 +205,13 @@ export function RegularBillForm({ visible, onClose, onSubmit, initialValues }: B
               )}
             />
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginTop: 10
+              }}
+            >
               <Button
                 mode="outlined"
                 onPress={handleCancel}

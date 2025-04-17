@@ -9,15 +9,13 @@ export default function PartnerInfoLayout() {
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#5D4037' // MD3 Brown 700 - Medium acorn brown
+          backgroundColor: '#5D4037'
         },
         headerTintColor: theme.colors.onPrimary,
         headerTitleStyle: {
           fontFamily: 'Bitter-Bold'
         },
-        headerBackTitleStyle: {
-          fontFamily: 'Bitter'
-        },
+        headerBackVisible: false,
         contentStyle: {
           backgroundColor: theme.colors.background
         }
