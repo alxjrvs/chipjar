@@ -1,4 +1,5 @@
 import { AcornDecoration } from '@/components/AcornDecoration'
+import { materialColors } from '@/components/ColorPicker'
 import { LoadingIndicator } from '@/components/LoadingIndicator'
 import { Text, View, useAppTheme } from '@/components/Themed'
 import { ThemedContainer } from '@/components/ThemedContainer'
@@ -73,7 +74,10 @@ export default function PartnerStatsScreen() {
                 style={{
                   fontFamily: 'Bitter-Bold',
                   fontSize: 28,
-                  color: theme.colors.primary
+                  color:
+                    materialColors[
+                      partners.partner1.color as keyof typeof materialColors
+                    ]
                 }}
               >
                 {formatPercentage(partner1Percentage)}
@@ -97,7 +101,10 @@ export default function PartnerStatsScreen() {
                 style={{
                   fontFamily: 'Bitter-Bold',
                   fontSize: 28,
-                  color: theme.colors.secondary
+                  color:
+                    materialColors[
+                      partners.partner2.color as keyof typeof materialColors
+                    ]
                 }}
               >
                 {formatPercentage(partner2Percentage)}
@@ -135,65 +142,6 @@ export default function PartnerStatsScreen() {
             >
               {formatCurrency(totalSalary)}
             </Text>
-          </View>
-        </Card.Content>
-      </Card>
-
-      <Card style={{ width: '100%', marginBottom: 20 }}>
-        <Card.Content>
-          <Text
-            style={{
-              fontFamily: 'Bitter-Bold',
-              marginBottom: 10,
-              textAlign: 'center'
-            }}
-          >
-            Bill Split Ratio
-          </Text>
-          <View
-            style={{
-              marginBottom: 10
-            }}
-          >
-            <Text style={{ fontFamily: 'Bitter', textAlign: 'center' }}>
-              For every $100 spent:
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: 10
-            }}
-          >
-            <View style={{ alignItems: 'center', width: '48%' }}>
-              <Text style={{ fontFamily: 'Bitter', textAlign: 'center' }}>
-                {partners.partner1.name} pays
-              </Text>
-              <Text
-                style={{
-                  fontFamily: 'Bitter-Bold',
-                  fontSize: 24,
-                  color: theme.colors.primary
-                }}
-              >
-                ${(partner1Percentage * 100).toFixed(2)}
-              </Text>
-            </View>
-            <View style={{ alignItems: 'center', width: '48%' }}>
-              <Text style={{ fontFamily: 'Bitter', textAlign: 'center' }}>
-                {partners.partner2.name} pays
-              </Text>
-              <Text
-                style={{
-                  fontFamily: 'Bitter-Bold',
-                  fontSize: 24,
-                  color: theme.colors.secondary
-                }}
-              >
-                ${(partner2Percentage * 100).toFixed(2)}
-              </Text>
-            </View>
           </View>
         </Card.Content>
       </Card>

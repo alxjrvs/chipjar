@@ -1,8 +1,9 @@
+import { ColorName, ColorPicker } from '@/components/ColorPicker'
 import { Button, Text, View } from '@/components/Themed'
 import { styles } from '@/styles'
 import { PartnerFormValues } from '@/types'
 
-import { UseFormReturn } from 'react-hook-form'
+import { Controller, UseFormReturn } from 'react-hook-form'
 import { CurrencyInput } from './CurrencyInput'
 import { FormInput } from './FormInput'
 
@@ -34,6 +35,16 @@ export function PartnerForm({
             name="partner1.salary"
             placeholder="Annual Salary"
           />
+          <Controller
+            control={form.control}
+            name="partner1.color"
+            render={({ field: { onChange, value } }) => (
+              <ColorPicker
+                selectedColor={value as ColorName}
+                onSelectColor={onChange}
+              />
+            )}
+          />
         </View>
 
         <View style={styles.partnerSection}>
@@ -49,6 +60,16 @@ export function PartnerForm({
             control={form.control}
             name="partner2.salary"
             placeholder="Annual Salary"
+          />
+          <Controller
+            control={form.control}
+            name="partner2.color"
+            render={({ field: { onChange, value } }) => (
+              <ColorPicker
+                selectedColor={value as ColorName}
+                onSelectColor={onChange}
+              />
+            )}
           />
         </View>
       </View>

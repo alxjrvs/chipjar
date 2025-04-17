@@ -1,4 +1,5 @@
 import { AcornDecoration } from '@/components/AcornDecoration'
+import { materialColors } from '@/components/ColorPicker'
 import { LoadingIndicator } from '@/components/LoadingIndicator'
 import { RegularBillForm } from '@/components/RegularBillForm'
 import { Button, Text, View, useAppTheme } from '@/components/Themed'
@@ -171,7 +172,10 @@ export default function RegularBillsScreen() {
                   <Text
                     style={{
                       fontFamily: 'Bitter-Bold',
-                      color: theme.colors.primary
+                      color:
+                        materialColors[
+                          partners.partner1.color as keyof typeof materialColors
+                        ]
                     }}
                   >
                     {formatCurrency(partnerAmounts.partner1Amount)}
@@ -184,7 +188,10 @@ export default function RegularBillsScreen() {
                   <Text
                     style={{
                       fontFamily: 'Bitter-Bold',
-                      color: theme.colors.secondary
+                      color:
+                        materialColors[
+                          partners.partner2.color as keyof typeof materialColors
+                        ]
                     }}
                   >
                     {formatCurrency(partnerAmounts.partner2Amount)}

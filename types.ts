@@ -1,3 +1,4 @@
+import { materialColors } from '@/components/ColorPicker'
 import { z } from 'zod'
 
 export const partnerFormSchema = z.object({
@@ -14,7 +15,12 @@ export const partnerFormSchema = z.object({
         {
           message: 'Salary must be a positive number'
         }
-      )
+      ),
+    color: z
+      .string()
+      .refine((val) => Object.keys(materialColors).includes(val), {
+        message: 'Invalid color selection'
+      })
   }),
   partner2: z.object({
     name: z.string().min(1, { message: 'Name is required' }),
@@ -29,7 +35,12 @@ export const partnerFormSchema = z.object({
         {
           message: 'Salary must be a positive number'
         }
-      )
+      ),
+    color: z
+      .string()
+      .refine((val) => Object.keys(materialColors).includes(val), {
+        message: 'Invalid color selection'
+      })
   })
 })
 
