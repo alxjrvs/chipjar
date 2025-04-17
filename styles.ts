@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     marginBottom: 30,
     opacity: 0.8,
     fontFamily: 'Bitter',
-    color: '#D35400' // Keeping this specific color (Burnt orange autumn leaf)
+    color: '#E64A19'
   },
   headerContainer: {
     flexDirection: 'row',
@@ -84,9 +84,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
     fontFamily: 'Bitter'
   },
-  inputError: {
-    // borderColor will come from theme.colors.error
-  },
+  inputError: {},
   errorText: {
     fontSize: 12,
     marginBottom: 10,
@@ -168,7 +166,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(56, 47, 36, 0.5)' // Keeping this specific color
+    backgroundColor: 'rgba(62, 39, 35, 0.5)'
   },
   modalView: {
     margin: 20,

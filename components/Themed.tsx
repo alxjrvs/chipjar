@@ -38,10 +38,11 @@ export const Text = PaperText
 export const Surface = PaperSurface
 // Custom Button with no borders or elevation
 export function Button(props: React.ComponentProps<typeof PaperButton>) {
+  const theme = useTheme<MD3Theme>()
   return (
     <PaperButton
-      buttonColor="#5D3915" // Darker acorn brown
-      textColor="white"
+      buttonColor={theme.colors.primary}
+      textColor={theme.colors.onPrimary}
       mode={props.mode || 'text'}
       {...props}
       style={[{ elevation: 0, borderWidth: 0 }, props.style]}

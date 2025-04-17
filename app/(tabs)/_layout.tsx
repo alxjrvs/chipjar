@@ -1,10 +1,12 @@
-import { AcornDecoration } from '@/components/AcornDecoration'
-import { useAppTheme } from '@/components/Themed'
+import { useAppTheme, View } from '@/components/Themed'
+import { usePartnerData } from '@/contexts/PartnerDataContext'
+import { FontAwesome } from '@expo/vector-icons'
 import { Tabs } from 'expo-router'
 import { Platform } from 'react-native'
 
 export default function TabLayout() {
   const theme = useAppTheme()
+  const { partners } = usePartnerData()
 
   return (
     <Tabs
@@ -40,9 +42,30 @@ export default function TabLayout() {
       <Tabs.Screen
         name="equityCalculator"
         options={{
-          title: 'Equity Calculator',
-          tabBarIcon: () => (
-            <AcornDecoration size={16} style={{ marginRight: 6 }} />
+          title: 'Calculator',
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome
+              name="calculator"
+              size={size}
+              color={!!partners ? color : theme.colors.surfaceDisabled}
+            />
+          )
+        }}
+      />
+      <Tabs.Screen
+        name="partnerInfo"
+        options={{
+          title: 'Partners',
+          tabBarIcon: ({ color, size }) => (
+            <View style={{ flexDirection: 'row' }}>
+              <FontAwesome name="user" size={size - 2} color={color} />
+              <FontAwesome
+                name="user"
+                size={size - 2}
+                color={color}
+                style={{ marginLeft: 2 }}
+              />
+            </View>
           )
         }}
       />

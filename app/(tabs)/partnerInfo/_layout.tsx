@@ -2,7 +2,7 @@ import { AcornDecoration } from '@/components/AcornDecoration'
 import { Text, useAppTheme, View } from '@/components/Themed'
 import { Stack } from 'expo-router'
 
-export default function IndexLayout() {
+export default function PartnerInfoLayout() {
   const theme = useAppTheme()
 
   return (
@@ -13,8 +13,7 @@ export default function IndexLayout() {
         },
         headerTintColor: theme.colors.onPrimary,
         headerTitleStyle: {
-          fontFamily: 'Bitter-Bold',
-          color: 'red'
+          fontFamily: 'Bitter-Bold'
         },
         headerBackTitleStyle: {
           fontFamily: 'Bitter'
@@ -36,7 +35,7 @@ export default function IndexLayout() {
                   fontSize: 18
                 }}
               >
-                Equity Calculator
+                Partner Information
               </Text>
             </View>
           )

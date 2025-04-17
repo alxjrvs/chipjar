@@ -24,15 +24,20 @@
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/acorn-favicon.png"
+      "output": "static"
     },
-    "plugins": [
-      "expo-router",
-      "expo-font"
-    ],
+    "plugins": ["expo-router", "expo-font"],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "e6037ed8-988c-4c3b-9a55-840fb8f13c48"
+      }
+    },
+    "owner": "alxjrvs"
   }
 }

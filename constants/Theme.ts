@@ -1,41 +1,34 @@
 import { MD3DarkTheme, MD3LightTheme, configureFonts } from 'react-native-paper'
 
-// Autumn-themed color palette for light theme
 const autumnLightColors = {
-  // Primary colors - Acorn brown
-  primary: '#8B5A2B', // Rich acorn brown
-  primaryContainer: '#D7BFA8', // Light acorn shell
+  primary: '#795548',
+  primaryContainer: '#EADDCF',
   onPrimary: '#FFFFFF',
-  onPrimaryContainer: '#3E2914',
+  onPrimaryContainer: '#3E2723',
 
-  // Secondary colors - Autumn leaf
-  secondary: '#D35400', // Burnt orange (autumn leaf)
-  secondaryContainer: '#FFDBC2', // Light orange
+  secondary: '#E64A19',
+  secondaryContainer: '#FFDCC4',
   onSecondary: '#FFFFFF',
-  onSecondaryContainer: '#4A1D00',
+  onSecondaryContainer: '#BF360C',
 
-  // Tertiary colors - Forest green
-  tertiary: '#2E7D32', // Forest green
-  tertiaryContainer: '#B8E6C0', // Light moss
+  tertiary: '#2E7D32',
+  tertiaryContainer: '#C8E6C9',
   onTertiary: '#FFFFFF',
-  onTertiaryContainer: '#0C2A0F',
+  onTertiaryContainer: '#1B5E20',
 
-  // Background colors
-  background: '#FFFBF5', // Warm cream
-  onBackground: '#1F1B16', // Dark brown
-  surface: '#FFFBF5',
+  background: '#FFFBF7',
+  onBackground: '#1F1B16',
+  surface: '#FFFBF7',
   onSurface: '#1F1B16',
-  surfaceVariant: '#F0E6D6', // Parchment
+  surfaceVariant: '#F0E6D6',
   onSurfaceVariant: '#4D4639',
 
-  // Error colors
-  error: '#B3261E', // Traditional error red
-  errorContainer: '#F9DEDC',
+  error: '#B00020',
+  errorContainer: '#FFDAD6',
   onError: '#FFFFFF',
-  onErrorContainer: '#410E0B',
+  onErrorContainer: '#410002',
 
-  // Other colors
-  outline: '#938F85', // Muted brown
+  outline: '#79736A',
   outlineVariant: '#D8C2A9',
   inverseSurface: '#352F28',
   inverseOnSurface: '#F9EFE6',
@@ -47,59 +40,50 @@ const autumnLightColors = {
   backdrop: 'rgba(56, 47, 36, 0.4)'
 }
 
-// Autumn-themed color palette for dark theme
 const autumnDarkColors = {
-  // Primary colors - Acorn brown
-  primary: '#D7BFA8', // Light acorn shell
-  primaryContainer: '#704A22', // Medium acorn brown
-  onPrimary: '#3E2914',
-  onPrimaryContainer: '#F6E8D7',
+  primary: '#BCAAA4',
+  primaryContainer: '#5D4037',
+  onPrimary: '#3E2723',
+  onPrimaryContainer: '#EFEBE9',
 
-  // Secondary colors - Autumn leaf
-  secondary: '#FFBD98', // Light orange
-  secondaryContainer: '#A34200', // Deep autumn orange
-  onSecondary: '#4A1D00',
-  onSecondaryContainer: '#FFDBC2',
+  secondary: '#FFAB91',
+  secondaryContainer: '#BF360C',
+  onSecondary: '#3E2723',
+  onSecondaryContainer: '#FFCCBC',
 
-  // Tertiary colors - Forest green
-  tertiary: '#A0D4A9', // Light moss
-  tertiaryContainer: '#1B5E20', // Deep forest green
-  onTertiary: '#0C2A0F',
-  onTertiaryContainer: '#D7F2DC',
+  tertiary: '#A5D6A7',
+  tertiaryContainer: '#1B5E20',
+  onTertiary: '#1B5E20',
+  onTertiaryContainer: '#C8E6C9',
 
-  // Background colors
-  background: '#1F1B16', // Dark brown
-  onBackground: '#EAE1D9',
+  background: '#1F1B16',
+  onBackground: '#EFEBE9',
   surface: '#1F1B16',
-  onSurface: '#EAE1D9',
-  surfaceVariant: '#4D4639', // Dark parchment
-  onSurfaceVariant: '#D8C2A9',
+  onSurface: '#EFEBE9',
+  surfaceVariant: '#4D4037',
+  onSurfaceVariant: '#D7CCC8',
 
-  // Error colors
-  error: '#F2B8B5', // Light error red
-  errorContainer: '#8C1D18',
-  onError: '#601410',
-  onErrorContainer: '#F9DEDC',
+  error: '#CF6679',
+  errorContainer: '#8B0000',
+  onError: '#000000',
+  onErrorContainer: '#FFCDD2',
 
-  // Other colors
-  outline: '#A08D71',
-  outlineVariant: '#4D4639',
-  inverseSurface: '#EAE1D9',
-  inverseOnSurface: '#352F28',
-  inversePrimary: '#8B5A2B',
+  outline: '#BCAAA4',
+  outlineVariant: '#5D4037',
+  inverseSurface: '#EFEBE9',
+  inverseOnSurface: '#3E2723',
+  inversePrimary: '#795548',
   shadow: '#000000',
   scrim: '#000000',
-  surfaceDisabled: 'rgba(234, 225, 217, 0.12)',
-  onSurfaceDisabled: 'rgba(234, 225, 217, 0.38)',
+  surfaceDisabled: 'rgba(239, 235, 233, 0.12)',
+  onSurfaceDisabled: 'rgba(239, 235, 233, 0.38)',
   backdrop: 'rgba(31, 27, 22, 0.4)'
 }
 
-// Font configuration for Material Design 3
 const fontConfig = {
   fontFamily: 'Bitter'
 }
 
-// Define our custom light theme
 export const CustomLightTheme = {
   ...MD3LightTheme,
   colors: {
@@ -113,7 +97,6 @@ export const CustomLightTheme = {
   }
 }
 
-// Define our custom dark theme
 export const CustomDarkTheme = {
   ...MD3DarkTheme,
   colors: {

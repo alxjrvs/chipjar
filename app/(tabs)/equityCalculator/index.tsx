@@ -1,69 +1,44 @@
-import { AcornDecoration } from '@/components/AcornDecoration'
+import { BillForm } from '@/components/BillForm'
 import { LoadingIndicator } from '@/components/LoadingIndicator'
-import { PartnerForm } from '@/components/PartnerForm'
+import { ResultsModal } from '@/components/ResultsModal'
 import { Text, View } from '@/components/Themed'
+import { usePartnerData } from '@/contexts/PartnerDataContext'
+import { styles } from '@/styles'
+import { BillFormValues, SplitResult, billFormSchema } from '@/types'
+import { calculateBillSplit } from '@/utils/billSplitCalculator'
 import { zodResolver } from '@hookform/resolvers/zod'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useRouter } from 'expo-router'
-import { useEffect, useState } from 'react'
+import { Redirect } from 'expo-router'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
 
-import { styles } from '@/styles'
-import { PartnerFormValues, partnerFormSchema } from '@/types'
+export default function CalculatorScreen() {
+  const { partners, isLoading } = usePartnerData()
 
-export default function PartnersScreen() {
-  // State to track if data is loading
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [modalVisible, setModalVisible] = useState<boolean>(false)
 
-  // Router for navigation
-  const router = useRouter()
-
-  // Partner form setup with react-hook-form
-  const partnerForm = useForm<PartnerFormValues>({
-    resolver: zodResolver(partnerFormSchema),
+  const [splitResults, setSplitResults] = useState<SplitResult | null>(null)
+  const billForm = useForm<BillFormValues>({
+    resolver: zodResolver(billFormSchema),
     defaultValues: {
-      partner1: { name: '', salary: '' },
-      partner2: { name: '', salary: '' }
+      amount: ''
     }
   })
 
-  // Load saved partners data on component mount
-  useEffect(() => {
-    loadPartnersData()
-  }, [])
+  const handleCalculateSplit = (data: BillFormValues) => {
+    if (!partners) return
 
-  // Function to load partners data from AsyncStorage
-  const loadPartnersData = async () => {
-    try {
-      setIsLoading(true)
-      const savedPartnersData = await AsyncStorage.getItem('partnersData')
-      if (savedPartnersData) {
-        // If we already have partner data, navigate to the calculator
-        router.push('/equityCalculator/singleBill')
-      }
-    } catch (error) {
-      console.error('Error loading partners data:', error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  // Function to save partners data
-  const savePartnersData = async (data: PartnerFormValues) => {
-    try {
-      setIsLoading(true)
-      await AsyncStorage.setItem('partnersData', JSON.stringify(data))
-      // Navigate to the calculator screen after saving
-      router.push('/equityCalculator/singleBill')
-    } catch (error) {
-      console.error('Error saving partners data:', error)
-      setIsLoading(false)
-    }
+    const results = calculateBillSplit(data.amount, partners)
+    setSplitResults(results)
+    setModalVisible(true)
   }
 
   if (isLoading) {
     return <LoadingIndicator />
+  }
+
+  if (!partners) {
+    return <Redirect href="/partnerInfo" />
   }
 
   return (
@@ -76,13 +51,23 @@ export default function PartnersScreen() {
         keyboardShouldPersistTaps="handled"
       >
         <View style={styles.titleContainer}>
-          <AcornDecoration size={32} style={styles.acornDecoration} />
-          <Text style={styles.title}>ChipJar</Text>
-          <AcornDecoration size={32} style={styles.acornDecoration} />
+          <Text style={styles.title}>Bill Splitter</Text>
         </View>
         <Text style={styles.subtitle}>Split bills based on income</Text>
 
-        <PartnerForm form={partnerForm} onSubmit={savePartnersData} />
+        <BillForm
+          form={billForm}
+          partnerData={partners}
+          onSubmit={handleCalculateSplit}
+        />
+
+        <ResultsModal
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          splitResults={splitResults}
+          billAmount={billForm.getValues().amount}
+          partnerData={partners}
+        />
       </ScrollView>
     </KeyboardAvoidingView>
   )
