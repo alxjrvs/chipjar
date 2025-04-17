@@ -1,7 +1,7 @@
-import { Text, TextInput, useAppTheme } from '@/components/Themed'
 import { styles } from '@/styles'
 import { Control, Controller, FieldValues, Path } from 'react-hook-form'
 import { TextInputProps } from 'react-native-paper'
+import { Text, TextInput } from './Themed'
 
 interface FormInputProps<T extends FieldValues>
   extends Omit<TextInputProps, 'value'> {
@@ -16,8 +16,6 @@ export function FormInput<T extends FieldValues>({
   keyboardType,
   ...rest
 }: FormInputProps<T>) {
-  const theme = useAppTheme()
-
   return (
     <Controller
       control={control}

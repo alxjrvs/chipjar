@@ -1,7 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { useAppTheme } from './Themed'
-import { useColorScheme } from 'react-native'
+import { StyleSheet, View, useColorScheme } from 'react-native'
 
 interface AcornDecorationProps {
   size?: number
@@ -9,11 +7,9 @@ interface AcornDecorationProps {
 }
 
 export function AcornDecoration({ size = 24, style }: AcornDecorationProps) {
-  const theme = useAppTheme()
   const colorScheme = useColorScheme()
   const isDark = colorScheme === 'dark'
 
-  // Colors based on theme
   const capColor = isDark ? '#D7BFA8' : '#8B5A2B' // Acorn cap color
   const bodyColor = isDark ? '#A34200' : '#D35400' // Acorn body color
 
