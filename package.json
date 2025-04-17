@@ -12,7 +12,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
-    "deploy:web": "bunx expo export --platform web && bunx eas-cli deploy"
+    "deploy:web": "bunx expo export --platform web && bunx eas-cli deploy",
+    "deploy:web:prod": "bunx expo export --platform web && bunx eas-cli deploy --prod"
   },
   "jest": {
     "preset": "jest-expo"
@@ -54,6 +55,7 @@
     "prettier": "^3.5.3",
     "react-test-renderer": "18.3.1",
     "typescript": "~5.3.3"
+
   },
   "private": true
 }
