@@ -1,7 +1,9 @@
+import { AcornDecoration } from '@/components/AcornDecoration'
 import { BillForm } from '@/components/BillForm'
 import { LoadingIndicator } from '@/components/LoadingIndicator'
 import { ResultsModal } from '@/components/ResultsModal'
 import { Text, View } from '@/components/Themed'
+import { ThemedContainer } from '@/components/ThemedContainer'
 import { usePartnerData } from '@/contexts/PartnerDataContext'
 import { styles } from '@/styles'
 import { BillFormValues, SplitResult, billFormSchema } from '@/types'
@@ -11,7 +13,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Redirect } from 'expo-router'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
 
 export default function CalculatorScreen() {
   const { partners, isLoading } = usePartnerData()
@@ -46,33 +47,27 @@ export default function CalculatorScreen() {
   }
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
-    >
-      <ScrollView
-        contentContainerStyle={styles.scrollContainer}
-        keyboardShouldPersistTaps="handled"
-      >
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Bill Splitter</Text>
-        </View>
-        <Text style={styles.subtitle}>Split bills based on income</Text>
+    <ThemedContainer>
+      <View style={styles.titleContainer}>
+        <AcornDecoration size={32} style={styles.acornDecoration} />
+        <Text style={styles.title}>Bill Splitter</Text>
+        <AcornDecoration size={32} style={styles.acornDecoration} />
+      </View>
+      <Text style={styles.subtitle}>Split bills based on income</Text>
 
-        <BillForm
-          form={billForm}
-          partnerData={partners}
-          onSubmit={handleCalculateSplit}
-        />
+      <BillForm
+        form={billForm}
+        partnerData={partners}
+        onSubmit={handleCalculateSplit}
+      />
 
-        <ResultsModal
-          visible={modalVisible}
-          onClose={() => setModalVisible(false)}
-          splitResults={splitResults}
-          billAmount={billForm.getValues().amount}
-          partnerData={partners}
-        />
-      </ScrollView>
-    </KeyboardAvoidingView>
+      <ResultsModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        splitResults={splitResults}
+        billAmount={billForm.getValues().amount}
+        partnerData={partners}
+      />
+    </ThemedContainer>
   )
 }

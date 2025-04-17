@@ -31,13 +31,29 @@ export const Text = PaperText
 export const Surface = PaperSurface
 export function Button(props: React.ComponentProps<typeof PaperButton>) {
   const theme = useTheme<MD3Theme>()
+  const getButtonColor = () => {
+    if (props.mode === 'outlined') {
+      return 'transparent'
+    }
+    return props.mode === 'contained' ? theme.colors.primary : 'transparent'
+  }
+
+  const getTextColor = () => {
+    if (props.mode === 'outlined') {
+      return theme.colors.primary
+    }
+    return props.mode === 'contained'
+      ? theme.colors.onPrimary
+      : theme.colors.primary
+  }
+
   return (
     <PaperButton
-      buttonColor={theme.colors.primary}
-      textColor={theme.colors.onPrimary}
+      buttonColor={getButtonColor()}
+      textColor={getTextColor()}
       mode={props.mode || 'text'}
       {...props}
-      style={[{ elevation: 0, borderWidth: 0 }, props.style]}
+      style={[{ elevation: 2, borderRadius: 4 }, props.style]}
     />
   )
 }

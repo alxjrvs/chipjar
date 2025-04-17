@@ -12,7 +12,8 @@ export const styles = StyleSheet.create({
     fontFamily: 'Bitter'
   },
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#FAFAFA'
   },
   scrollContainer: {
     flexGrow: 1,
@@ -40,7 +41,7 @@ export const styles = StyleSheet.create({
     marginBottom: 30,
     opacity: 0.8,
     fontFamily: 'Bitter',
-    color: '#E64A19'
+    color: '#FFD600'
   },
   headerContainer: {
     flexDirection: 'row',
@@ -134,7 +135,8 @@ export const styles = StyleSheet.create({
   },
   equifyButton: {
     alignSelf: 'center',
-    width: '100%'
+    width: '100%',
+    borderRadius: 8
   },
   equifyButtonText: {
     fontSize: 18,
@@ -166,7 +168,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(62, 39, 35, 0.5)'
+    backgroundColor: 'rgba(98, 0, 238, 0.5)'
   },
   modalView: {
     margin: 20,

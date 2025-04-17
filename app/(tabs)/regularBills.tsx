@@ -2,13 +2,13 @@ import { AcornDecoration } from '@/components/AcornDecoration'
 import { LoadingIndicator } from '@/components/LoadingIndicator'
 import { RegularBillForm } from '@/components/RegularBillForm'
 import { Button, Text, View, useAppTheme } from '@/components/Themed'
+import { ThemedContainer } from '@/components/ThemedContainer'
 import { Bill, RecurrenceType, useBills } from '@/contexts/BillsContext'
 import { usePartnerData } from '@/contexts/PartnerDataContext'
 import { styles } from '@/styles'
 import { FontAwesome } from '@expo/vector-icons'
 import { Redirect } from 'expo-router'
 import { useState } from 'react'
-import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
 import { Card, Divider, FAB, IconButton, Menu } from 'react-native-paper'
 
 export default function RegularBillsScreen() {
@@ -199,71 +199,62 @@ export default function RegularBillsScreen() {
   }
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
-    >
-      <ScrollView
-        contentContainerStyle={styles.scrollContainer}
-        keyboardShouldPersistTaps="handled"
-      >
-        <View style={styles.titleContainer}>
-          <AcornDecoration size={32} style={styles.acornDecoration} />
-          <Text style={styles.title}>Regular Bills</Text>
-          <AcornDecoration size={32} style={styles.acornDecoration} />
-        </View>
-        <Text style={[styles.subtitle, { textAlign: 'center' }]}>
-          Manage your recurring bills
-        </Text>
+    <ThemedContainer>
+      <View style={styles.titleContainer}>
+        <AcornDecoration size={32} style={styles.acornDecoration} />
+        <Text style={styles.title}>Regular Bills</Text>
+        <AcornDecoration size={32} style={styles.acornDecoration} />
+      </View>
+      <Text style={[styles.subtitle, { textAlign: 'center' }]}>
+        Manage your recurring bills
+      </Text>
 
-        {bills.length === 0 ? (
-          <Card style={{ width: '100%', marginVertical: 20 }}>
-            <Card.Content style={{ alignItems: 'center', padding: 20 }}>
-              <FontAwesome
-                name="file-text-o"
-                size={48}
-                color={theme.colors.outline}
-                style={{ marginBottom: 15 }}
-              />
-              <Text style={{ textAlign: 'center', fontFamily: 'Bitter' }}>
-                No regular bills added yet.
-              </Text>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  fontFamily: 'Bitter',
-                  color: theme.colors.outline,
-                  marginBottom: 20
-                }}
-              >
-                Add your first bill to get started.
-              </Text>
-              <Button mode="contained" onPress={handleAddBill}>
-                Add Bill
-              </Button>
-            </Card.Content>
-          </Card>
-        ) : (
-          <View style={{ width: '100%' }}>{bills.map(renderBillCard)}</View>
-        )}
+      {bills.length === 0 ? (
+        <Card style={{ width: '100%', marginVertical: 20 }}>
+          <Card.Content style={{ alignItems: 'center', padding: 20 }}>
+            <FontAwesome
+              name="file-text-o"
+              size={48}
+              color={theme.colors.outline}
+              style={{ marginBottom: 15 }}
+            />
+            <Text style={{ textAlign: 'center', fontFamily: 'Bitter' }}>
+              No regular bills added yet.
+            </Text>
+            <Text
+              style={{
+                textAlign: 'center',
+                fontFamily: 'Bitter',
+                color: theme.colors.outline,
+                marginBottom: 20
+              }}
+            >
+              Add your first bill to get started.
+            </Text>
+            <Button mode="contained" onPress={handleAddBill}>
+              Add Bill
+            </Button>
+          </Card.Content>
+        </Card>
+      ) : (
+        <View style={{ width: '100%' }}>{bills.map(renderBillCard)}</View>
+      )}
 
-        <RegularBillForm
-          visible={formVisible}
-          onClose={() => setFormVisible(false)}
-          onSubmit={handleSubmit}
-          initialValues={
-            selectedBill
-              ? {
-                  name: selectedBill.name,
-                  description: selectedBill.description,
-                  recurrence: selectedBill.recurrence,
-                  amount: selectedBill.amount
-                }
-              : undefined
-          }
-        />
-      </ScrollView>
-
+      <RegularBillForm
+        visible={formVisible}
+        onClose={() => setFormVisible(false)}
+        onSubmit={handleSubmit}
+        initialValues={
+          selectedBill
+            ? {
+                name: selectedBill.name,
+                description: selectedBill.description,
+                recurrence: selectedBill.recurrence,
+                amount: selectedBill.amount
+              }
+            : undefined
+        }
+      />
       {bills.length > 0 && (
         <FAB
           icon="plus"
@@ -272,12 +263,12 @@ export default function RegularBillsScreen() {
             margin: 16,
             right: 0,
             bottom: 0,
-            backgroundColor: theme.colors.primary
+            backgroundColor: theme.colors.secondary
           }}
-          color={theme.colors.onPrimary}
+          color={theme.colors.onSecondary}
           onPress={handleAddBill}
         />
       )}
-    </KeyboardAvoidingView>
+    </ThemedContainer>
   )
 }
