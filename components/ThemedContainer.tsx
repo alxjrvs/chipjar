@@ -1,7 +1,13 @@
 import { useAppTheme, View } from '@/components/Themed'
 import { styles } from '@/styles'
 import React from 'react'
-import { KeyboardAvoidingView, Platform, ScrollView, StyleProp, ViewStyle } from 'react-native'
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleProp,
+  ViewStyle
+} from 'react-native'
 
 interface ThemedContainerProps {
   children: React.ReactNode
@@ -28,10 +34,7 @@ export function ThemedContainer({
       ]}
     >
       <ScrollView
-        contentContainerStyle={[
-          styles.scrollContainer,
-          scrollContainerStyle
-        ]}
+        contentContainerStyle={[styles.scrollContainer, scrollContainerStyle]}
         keyboardShouldPersistTaps={keyboardShouldPersistTaps}
       >
         {children}
